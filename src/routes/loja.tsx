@@ -2,7 +2,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ProductCard } from "@/components/ProductCard";
-import camisa from "@/assets/produto-camisa.jpg";
+import camisaAfrica from "@/assets/produto-camisa-africa.jpg";
+import camisaAmericas from "@/assets/produto-camisa-americas.jpg";
+import camisaAsia from "@/assets/produto-camisa-asia.jpg";
+import camisaEuropa from "@/assets/produto-camisa-europa.jpg";
+import camisaOceania from "@/assets/produto-camisa-oceania.jpg";
 import bone from "@/assets/produto-bone.jpg";
 import chaveiro from "@/assets/produto-chaveiro.jpg";
 import livroCapa from "@/assets/livro-capa.png";
@@ -22,8 +26,11 @@ export const Route = createFileRoute("/loja")({
 });
 
 const ALL = [
-  { image: camisa, name: "Camisa Sagrado Coração", category: "Vestuário", price: "R$ 129", badge: "Novo" },
-  { image: camisa, name: "Camisa Vamos Evangelizar", category: "Vestuário", price: "R$ 119" },
+  { image: camisaAfrica, name: "Camisa Continente África", category: "Vestuário · Coleção 5 Continentes", price: "R$ 129", badge: "África" },
+  { image: camisaAmericas, name: "Camisa Continente Américas", category: "Vestuário · Coleção 5 Continentes", price: "R$ 129", badge: "Américas" },
+  { image: camisaAsia, name: "Camisa Continente Ásia", category: "Vestuário · Coleção 5 Continentes", price: "R$ 129", badge: "Ásia" },
+  { image: camisaEuropa, name: "Camisa Continente Europa", category: "Vestuário · Coleção 5 Continentes", price: "R$ 129", badge: "Europa" },
+  { image: camisaOceania, name: "Camisa Continente Oceania", category: "Vestuário · Coleção 5 Continentes", price: "R$ 129", badge: "Oceania" },
   { image: bone, name: "Boné Cruz Dourada", category: "Acessórios", price: "R$ 89" },
   { image: bone, name: "Boné Cidadelas 360º", category: "Acessórios", price: "R$ 89" },
   { image: chaveiro, name: "Chaveiro Relíquia", category: "Devocionais", price: "R$ 39" },
