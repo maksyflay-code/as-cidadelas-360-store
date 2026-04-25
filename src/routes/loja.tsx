@@ -10,6 +10,18 @@ import camisaOceania from "@/assets/produto-camisa-oceania.jpg";
 import bone from "@/assets/produto-bone.jpg";
 import chaveiro from "@/assets/produto-chaveiro.jpg";
 import livroCapa from "@/assets/livro-capa.png";
+import terco from "@/assets/produto-terco.jpg";
+import medalha from "@/assets/produto-medalha.jpg";
+import diario from "@/assets/produto-diario.jpg";
+import caneca from "@/assets/produto-caneca.jpg";
+import vela from "@/assets/produto-vela.jpg";
+import tote from "@/assets/produto-tote.jpg";
+import cartoes from "@/assets/produto-cartoes.jpg";
+import kitPeregrino from "@/assets/produto-kit-peregrino.jpg";
+import moletom from "@/assets/produto-moletom.jpg";
+import quadro from "@/assets/produto-quadro.jpg";
+import pingente from "@/assets/produto-pingente.jpg";
+import crucifixo from "@/assets/produto-crucifixo.jpg";
 
 export const Route = createFileRoute("/loja")({
   component: LojaPage,
