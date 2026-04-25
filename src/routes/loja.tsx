@@ -46,12 +46,23 @@ const ALL = [
   { image: bone, name: "Boné Cruz Dourada", category: "Acessórios", price: "R$ 89" },
   { image: bone, name: "Boné Cidadelas 360º", category: "Acessórios", price: "R$ 89" },
   { image: chaveiro, name: "Chaveiro Relíquia", category: "Devocionais", price: "R$ 39" },
-  { image: chaveiro, name: "Chaveiro Coração de Cristo", category: "Devocionais", price: "R$ 35" },
+  { image: medalha, name: "Medalha de São Bento", category: "Devocionais", price: "R$ 79" },
+  { image: terco, name: "Terço de Oliveira Artesanal", category: "Devocionais", price: "R$ 129" },
+  { image: crucifixo, name: "Crucifixo de Mesa Marmorizado", category: "Devocionais", price: "R$ 189" },
+  { image: pingente, name: "Pingente Sagrado Coração · Prata 925", category: "Devocionais · Premium", price: "R$ 249", badge: "Premium" },
+  { image: moletom, name: "Moletom Cidadelas 360º", category: "Vestuário", price: "R$ 249", badge: "Inverno" },
+  { image: tote, name: "Bolsa Tote · Vista a Fé", category: "Acessórios", price: "R$ 79" },
+  { image: caneca, name: "Caneca Sagrado Coração", category: "Casa & Cotidiano", price: "R$ 59" },
+  { image: vela, name: "Vela Litúrgica Esperança 360º", category: "Casa & Cotidiano", price: "R$ 89" },
+  { image: quadro, name: "Quadro Sagrado Coração", category: "Casa & Cotidiano", price: "R$ 159" },
+  { image: diario, name: "Diário de Oração 360º", category: "Editorial", price: "R$ 99" },
+  { image: cartoes, name: "Cartões-Meditação · Deck 30", category: "Editorial", price: "R$ 49" },
   { image: livroCapa, name: "As Cidadelas da Esperança · Impresso", category: "Livro", price: "R$ 59", badge: "Best-seller" },
   { image: livroCapa, name: "As Cidadelas da Esperança · Digital", category: "Livro · E-book", price: "R$ 29" },
+  { image: kitPeregrino, name: "Kit Peregrino · Edição Completa", category: "Kits", price: "R$ 299", badge: "Edição limitada" },
 ];
 
-const FILTERS = ["Todos", "Vestuário", "Acessórios", "Devocionais", "Livro"];
+const FILTERS = ["Todos", "Vestuário", "Acessórios", "Devocionais", "Casa & Cotidiano", "Editorial", "Livro", "Kits"];
 
 function LojaPage() {
   return (
