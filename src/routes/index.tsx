@@ -5,7 +5,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ProductCard } from "@/components/ProductCard";
 import heroImg from "@/assets/hero-sagrado.jpg";
-import camisa from "@/assets/produto-camisa.jpg";
+import camisa from "@/assets/produto-camisa-europa.jpg";
 import bone from "@/assets/produto-bone.jpg";
 import chaveiro from "@/assets/produto-chaveiro.jpg";
 import livroCapa from "@/assets/livro-capa.png";
