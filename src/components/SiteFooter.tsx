@@ -6,17 +6,17 @@ export function SiteFooter() {
     <footer className="relative mt-32 overflow-hidden bg-gradient-wine text-primary-foreground">
       <div className="absolute inset-0 bg-gradient-radiance opacity-40" />
       <div className="relative mx-auto max-w-7xl px-6 py-20">
-        <div className="grid gap-12 md:grid-cols-4">
+        <div className="grid gap-12 text-center md:grid-cols-4 md:text-left">
           <div className="md:col-span-2">
             <p className="text-display text-3xl font-semibold tracking-tight">
               As Cidadelas <span className="text-gold">360º</span>
             </p>
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-primary-foreground/75">
+            <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-primary-foreground/75 md:mx-0">
               "Tudo é possível ao que crê" — Marcos 9:23. <br />
               Uma loja dedicada à evangelização através da arte, da palavra e
               dos símbolos da nossa fé.
             </p>
-            <div className="mt-6 flex gap-3">
+            <div className="mt-6 flex justify-center gap-3 md:justify-start">
               {[Instagram, Facebook, Youtube, Mail].map((Icon, i) => (
                 <a
                   key={i}
@@ -55,7 +55,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-16 flex justify-center border-t border-gold/20 pt-8">
+        <div className="mt-16 flex justify-center border-t border-gold/20 pt-8 text-center">
           <p className="text-xs text-primary-foreground/70">
             Desenvolvido por{" "}
             <a
