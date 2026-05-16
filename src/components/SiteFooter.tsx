@@ -55,12 +55,17 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col items-center justify-between gap-3 border-t border-gold/20 pt-8 md:flex-row">
-          <p className="text-xs text-primary-foreground/60">
-            © {new Date().getFullYear()} As Cidadelas 360º · Rede Mundi · Marcelo Trindade
-          </p>
-          <p className="text-xs uppercase tracking-[0.25em] text-gold">
-            Vamos Evangelizar
+        <div className="mt-16 flex justify-center border-t border-gold/20 pt-8">
+          <p className="text-xs text-primary-foreground/70">
+            Desenvolvido por{" "}
+            <a
+              href="https://www.linkedin.com/in/maksyflay/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gold underline-offset-4 transition-colors hover:underline"
+            >
+              Maksyflay Souza
+            </a>
           </p>
         </div>
       </div>
