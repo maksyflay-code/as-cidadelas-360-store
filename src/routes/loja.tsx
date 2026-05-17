@@ -28,18 +28,18 @@ export const Route = createFileRoute("/loja")({
 });
 
 const ALL = [
-  { image: camisaAfrica, name: "Camisa Continente África", category: "Vestuário · Coleção 5 Continentes", price: "R$ 129", badge: "África" },
-  { image: camisaAmericas, name: "Camisa Continente Américas", category: "Vestuário · Coleção 5 Continentes", price: "R$ 129", badge: "Américas" },
-  { image: camisaAsia, name: "Camisa Continente Ásia", category: "Vestuário · Coleção 5 Continentes", price: "R$ 129", badge: "Ásia" },
-  { image: camisaEuropa, name: "Camisa Continente Europa", category: "Vestuário · Coleção 5 Continentes", price: "R$ 129", badge: "Europa" },
-  { image: camisaOceania, name: "Camisa Continente Oceania", category: "Vestuário · Coleção 5 Continentes", price: "R$ 129", badge: "Oceania" },
-  { image: bone, name: "Boné Cruz Dourada", category: "Acessórios", price: "R$ 89" },
-  { image: bone, name: "Boné Cidadelas 360º", category: "Acessórios", price: "R$ 89" },
-  { image: chaveiro, name: "Chaveiro Relíquia", category: "Acessórios", price: "R$ 39" },
-  { image: moletom, name: "Moletom Cidadelas 360º", category: "Vestuário", price: "R$ 249", badge: "Inverno" },
-  { image: caneca, name: "Caneca As Cidadelas da Esperança 360º", category: "Casa & Cotidiano", price: "R$ 59" },
-  { image: livroCapa, name: "As Cidadelas da Esperança · Impresso", category: "Livro", price: "R$ 59", badge: "Best-seller" },
-  { image: livroCapa, name: "As Cidadelas da Esperança · Digital", category: "Livro · E-book", price: "R$ 29" },
+  { slug: "camisa-africa", image: camisaAfrica, name: "Camisa Continente África", category: "Vestuário · Coleção 5 Continentes", price: "R$ 129", badge: "África" },
+  { slug: "camisa-americas", image: camisaAmericas, name: "Camisa Continente Américas", category: "Vestuário · Coleção 5 Continentes", price: "R$ 129", badge: "Américas" },
+  { slug: "camisa-asia", image: camisaAsia, name: "Camisa Continente Ásia", category: "Vestuário · Coleção 5 Continentes", price: "R$ 129", badge: "Ásia" },
+  { slug: "camisa-europa", image: camisaEuropa, name: "Camisa Continente Europa", category: "Vestuário · Coleção 5 Continentes", price: "R$ 129", badge: "Europa" },
+  { slug: "camisa-oceania", image: camisaOceania, name: "Camisa Continente Oceania", category: "Vestuário · Coleção 5 Continentes", price: "R$ 129", badge: "Oceania" },
+  { slug: "bone-cruz-dourada", image: bone, name: "Boné Cruz Dourada", category: "Acessórios", price: "R$ 89" },
+  { slug: "bone-cidadelas", image: bone, name: "Boné Cidadelas 360º", category: "Acessórios", price: "R$ 89" },
+  { slug: "chaveiro-reliquia", image: chaveiro, name: "Chaveiro Relíquia", category: "Acessórios", price: "R$ 39" },
+  { slug: "moletom-cidadelas", image: moletom, name: "Moletom Cidadelas 360º", category: "Vestuário", price: "R$ 249", badge: "Inverno" },
+  { slug: "caneca-cidadelas", image: caneca, name: "Caneca As Cidadelas da Esperança 360º", category: "Casa & Cotidiano", price: "R$ 59" },
+  { slug: "livro-impresso", image: livroCapa, name: "As Cidadelas da Esperança · Impresso", category: "Livro", price: "R$ 59", badge: "Best-seller" },
+  { slug: "livro-digital", image: livroCapa, name: "As Cidadelas da Esperança · Digital", category: "Livro · E-book", price: "R$ 29" },
 ];
 
 const FILTERS = ["Todos", "Vestuário", "Acessórios", "Casa & Cotidiano", "Livro"];
