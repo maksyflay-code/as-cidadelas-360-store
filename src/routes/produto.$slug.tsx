@@ -89,7 +89,7 @@ function ProdutoPage() {
             <div className="mt-8">
               <p className="text-xs font-semibold uppercase tracking-wider text-foreground">Tamanho</p>
               <div className="mt-3 flex flex-wrap gap-2">
-                {product.tamanhos.map((t) => (
+                {product.tamanhos.map((t: string) => (
                   <button key={t} onClick={() => setTamanho(t)}
                     className={`min-w-12 rounded-md border px-4 py-2 text-sm font-medium transition ${
                       tamanho === t ? "border-primary bg-primary text-primary-foreground" : "border-border hover:border-primary"
@@ -105,7 +105,7 @@ function ProdutoPage() {
             <div className="mt-6">
               <p className="text-xs font-semibold uppercase tracking-wider text-foreground">Variante</p>
               <div className="mt-3 flex flex-wrap gap-2">
-                {product.variantes.map((v) => (
+                {product.variantes.map((v: string) => (
                   <button key={v} onClick={() => setVariante(v)}
                     className={`rounded-md border px-4 py-2 text-sm font-medium transition ${
                       variante === v ? "border-primary bg-primary text-primary-foreground" : "border-border hover:border-primary"
