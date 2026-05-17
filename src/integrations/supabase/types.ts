@@ -14,7 +14,219 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      addresses: {
+        Row: {
+          bairro: string
+          cep: string
+          cidade: string
+          complemento: string | null
+          created_at: string
+          destinatario: string | null
+          id: string
+          is_principal: boolean
+          logradouro: string
+          numero: string
+          uf: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          bairro: string
+          cep: string
+          cidade: string
+          complemento?: string | null
+          created_at?: string
+          destinatario?: string | null
+          id?: string
+          is_principal?: boolean
+          logradouro: string
+          numero: string
+          uf: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          bairro?: string
+          cep?: string
+          cidade?: string
+          complemento?: string | null
+          created_at?: string
+          destinatario?: string | null
+          id?: string
+          is_principal?: boolean
+          logradouro?: string
+          numero?: string
+          uf?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      order_items: {
+        Row: {
+          id: string
+          nome_snapshot: string
+          order_id: string
+          preco_unit_centavos: number
+          product_id: string | null
+          quantidade: number
+          tamanho: string | null
+          variante: string | null
+        }
+        Insert: {
+          id?: string
+          nome_snapshot: string
+          order_id: string
+          preco_unit_centavos: number
+          product_id?: string | null
+          quantidade: number
+          tamanho?: string | null
+          variante?: string | null
+        }
+        Update: {
+          id?: string
+          nome_snapshot?: string
+          order_id?: string
+          preco_unit_centavos?: number
+          product_id?: string | null
+          quantidade?: number
+          tamanho?: string | null
+          variante?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "order_items_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "order_items_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      orders: {
+        Row: {
+          created_at: string
+          endereco: Json
+          frete_centavos: number
+          id: string
+          status: Database["public"]["Enums"]["order_status"]
+          stripe_session_id: string | null
+          subtotal_centavos: number
+          total_centavos: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          endereco: Json
+          frete_centavos: number
+          id?: string
+          status?: Database["public"]["Enums"]["order_status"]
+          stripe_session_id?: string | null
+          subtotal_centavos: number
+          total_centavos: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          endereco?: Json
+          frete_centavos?: number
+          id?: string
+          status?: Database["public"]["Enums"]["order_status"]
+          stripe_session_id?: string | null
+          subtotal_centavos?: number
+          total_centavos?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      products: {
+        Row: {
+          ativo: boolean
+          badge: string | null
+          categoria: string
+          created_at: string
+          descricao: string | null
+          id: string
+          imagem_url: string
+          nome: string
+          ordem: number
+          preco_centavos: number
+          slug: string
+          tamanhos: string[]
+          updated_at: string
+          variantes: string[]
+        }
+        Insert: {
+          ativo?: boolean
+          badge?: string | null
+          categoria: string
+          created_at?: string
+          descricao?: string | null
+          id?: string
+          imagem_url: string
+          nome: string
+          ordem?: number
+          preco_centavos: number
+          slug: string
+          tamanhos?: string[]
+          updated_at?: string
+          variantes?: string[]
+        }
+        Update: {
+          ativo?: boolean
+          badge?: string | null
+          categoria?: string
+          created_at?: string
+          descricao?: string | null
+          id?: string
+          imagem_url?: string
+          nome?: string
+          ordem?: number
+          preco_centavos?: number
+          slug?: string
+          tamanhos?: string[]
+          updated_at?: string
+          variantes?: string[]
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          email: string | null
+          id: string
+          nome: string | null
+          telefone: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          id: string
+          nome?: string | null
+          telefone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          nome?: string | null
+          telefone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +235,13 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      order_status:
+        | "pending"
+        | "paid"
+        | "failed"
+        | "shipped"
+        | "delivered"
+        | "canceled"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +368,15 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      order_status: [
+        "pending",
+        "paid",
+        "failed",
+        "shipped",
+        "delivered",
+        "canceled",
+      ],
+    },
   },
 } as const
