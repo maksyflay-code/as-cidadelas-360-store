@@ -25,10 +25,10 @@ export const Route = createFileRoute("/")({
 });
 
 const PRODUCTS = [
-  { image: camisa, name: "Camisa Sagrado Coração", category: "Vestuário", price: "R$ 129", badge: "Novo" },
-  { image: livroCapa, name: "As Cidadelas da Esperança", category: "Livro · Impresso", price: "R$ 59", badge: "Best-seller" },
-  { image: bone, name: "Boné Cruz Dourada", category: "Acessórios", price: "R$ 89" },
-  { image: chaveiro, name: "Chaveiro Relíquia", category: "Devocionais", price: "R$ 39" },
+  { slug: "camisa-europa", image: camisa, name: "Camisa Sagrado Coração", category: "Vestuário", price: "R$ 129", badge: "Novo" },
+  { slug: "livro-impresso", image: livroCapa, name: "As Cidadelas da Esperança", category: "Livro · Impresso", price: "R$ 59", badge: "Best-seller" },
+  { slug: "bone-cruz-dourada", image: bone, name: "Boné Cruz Dourada", category: "Acessórios", price: "R$ 89" },
+  { slug: "chaveiro-reliquia", image: chaveiro, name: "Chaveiro Relíquia", category: "Devocionais", price: "R$ 39" },
 ];
 
 function HomePage() {
