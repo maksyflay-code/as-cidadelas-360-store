@@ -40,9 +40,9 @@ function ContaPage() {
   if (loading || !user) return <div className="min-h-screen bg-background"><SiteHeader /><div className="p-12 text-center">Carregando...</div></div>;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
-      <section className="mx-auto max-w-4xl px-6 py-12">
+      <section className="mx-auto w-full max-w-4xl flex-1 px-6 py-12">
         <div className="flex items-start justify-between">
           <div>
             <h1 className="text-display text-4xl font-medium text-foreground">Minha conta</h1>
