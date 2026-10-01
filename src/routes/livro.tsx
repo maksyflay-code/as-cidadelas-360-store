@@ -1,5 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Check, BookOpen, Download } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Check, Download } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import livroCapa from "@/assets/livro-capa.png";
@@ -14,6 +14,10 @@ export const Route = createFileRoute("/livro")({
         content:
           "O livro 'As Cidadelas da Esperança' de Marcelo Trindade. Uma reflexão sobre cristãos como administradores do bem divino. Disponível impresso e em e-book.",
       },
+      { property: "og:title", content: "As Cidadelas da Esperança 360º — Marcelo Trindade" },
+      { property: "og:description", content: "Conheça a obra e escolha o e-book em português, inglês ou italiano." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
 });
@@ -74,23 +78,18 @@ function LivroPage() {
               ))}
             </ul>
 
-            <div className="mt-10 grid gap-4 sm:grid-cols-2">
-              <button className="group flex flex-col gap-2 rounded-xl border-2 border-primary bg-card p-6 text-left transition-all hover:bg-primary hover:text-primary-foreground">
-                <div className="flex items-center gap-2">
-                  <BookOpen className="h-5 w-5" />
-                  <span className="text-xs font-semibold uppercase tracking-wider">Impresso</span>
-                </div>
-                <p className="text-display text-3xl font-semibold">R$ 59</p>
-                <p className="text-xs opacity-80">Capa especial · Frete a calcular</p>
-              </button>
-              <button className="group flex flex-col gap-2 rounded-xl border border-border bg-card p-6 text-left transition-all hover:border-gold">
+            <div className="mt-10 max-w-sm">
+              <Link to="/produto/$slug" params={{ slug: "ebook-cidadelas-portugues" }} className="group flex flex-col gap-2 rounded-xl border-2 border-primary bg-card p-6 text-left transition-all hover:bg-primary hover:text-primary-foreground">
                 <div className="flex items-center gap-2 text-gold">
                   <Download className="h-5 w-5" />
-                  <span className="text-xs font-semibold uppercase tracking-wider">Digital · E-book</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider">E-book · Português</span>
                 </div>
-                <p className="text-display text-3xl font-semibold text-foreground">R$ 29</p>
-                <p className="text-xs text-muted-foreground">PDF · Acesso imediato</p>
-              </button>
+                <p className="text-display text-3xl font-semibold">R$ 35,00</p>
+                <p className="text-xs opacity-80">Formato digital · Sem frete</p>
+              </Link>
+              <Link to="/loja" className="mt-4 inline-flex text-sm font-semibold text-primary underline underline-offset-4">
+                Ver edições em outros idiomas e o Plano de Negócios
+              </Link>
             </div>
           </div>
         </div>

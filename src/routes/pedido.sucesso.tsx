@@ -21,7 +21,7 @@ function SucessoPage() {
         <CheckCircle2 className="mx-auto h-16 w-16 text-primary" />
         <h1 className="mt-6 text-display text-4xl font-medium text-foreground">Pedido recebido!</h1>
         <p className="mt-3 text-sm text-muted-foreground">
-          Seu pedido foi registrado com sucesso. Em breve você receberá instruções de pagamento.
+          Seu pedido digital foi registrado. Em breve você receberá as instruções de pagamento por e-mail.
         </p>
         {id && <p className="mt-4 font-mono text-xs text-muted-foreground">Nº: {id}</p>}
         <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
