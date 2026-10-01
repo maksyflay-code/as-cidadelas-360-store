@@ -16,6 +16,16 @@ export const Route = createFileRoute("/produto/$slug")({
     return { product };
   },
   component: ProdutoPage,
+  head: ({ loaderData }) => ({
+    meta: [
+      { title: `${loaderData?.product.nome ?? "E-book"} — As Cidadelas 360º` },
+      { name: "description", content: loaderData?.product.descricao ?? "E-book As Cidadelas da Esperança 360º." },
+      { property: "og:title", content: loaderData?.product.nome ?? "E-book As Cidadelas 360º" },
+      { property: "og:description", content: loaderData?.product.descricao ?? "Livro digital disponível na loja As Cidadelas 360º." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
+    ],
+  }),
   notFoundComponent: () => (
     <div className="min-h-screen bg-background">
       <SiteHeader />
@@ -67,8 +77,8 @@ function ProdutoPage() {
     <div className="min-h-screen bg-background">
       <SiteHeader />
       <section className="mx-auto grid max-w-6xl gap-12 px-6 py-12 md:grid-cols-2">
-        <div className="overflow-hidden rounded-xl bg-card">
-          <img src={img} alt={product.nome} className="h-full w-full object-cover" />
+        <div className="overflow-hidden rounded-xl bg-card p-6">
+          <img src={img} alt={product.nome} className="mx-auto h-full max-h-[680px] w-full object-contain" />
         </div>
 
         <div>
@@ -84,6 +94,7 @@ function ProdutoPage() {
           {product.descricao && (
             <p className="mt-6 text-sm leading-relaxed text-muted-foreground">{product.descricao}</p>
           )}
+          <p className="mt-4 text-sm font-medium text-foreground">Formato digital · Sem frete</p>
 
           {product.tamanhos.length > 0 && (
             <div className="mt-8">

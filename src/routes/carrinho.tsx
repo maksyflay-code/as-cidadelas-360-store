@@ -65,7 +65,7 @@ function CarrinhoPage() {
                 <span className="text-muted-foreground">Subtotal</span>
                 <span className="font-medium">{formatBRL(subtotal)}</span>
               </div>
-              <p className="mt-2 text-xs text-muted-foreground">Frete calculado no checkout.</p>
+               <p className="mt-2 text-xs text-muted-foreground">Entrega digital gratuita.</p>
               <Link to="/checkout"
                 className="mt-6 block rounded-md bg-primary py-3 text-center text-sm font-semibold text-primary-foreground hover:bg-primary/90">
                 Finalizar compra

@@ -16,9 +16,9 @@ export function ProductCard({ image, name, category, price, badge, slug }: Props
 
   return (
     <Wrapper {...wrapperProps} className="group relative flex flex-col overflow-hidden rounded-xl border border-border bg-card transition-all duration-500 hover:border-gold hover:shadow-relic">
-      <div className="relative aspect-square overflow-hidden bg-muted">
+      <div className="relative aspect-[4/5] overflow-hidden bg-muted">
         <img src={image} alt={name} loading="lazy" width={1024} height={1024}
-          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+          className="h-full w-full object-contain p-3 transition-transform duration-700 group-hover:scale-[1.03]" />
         {badge && (
           <span className="absolute left-4 top-4 rounded-full bg-gradient-wine px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-primary-foreground shadow-soft">
             {badge}

@@ -1,18 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { z } from "zod";
-import { getFreteCentavos } from "./shipping";
-
-const EnderecoSchema = z.object({
-  destinatario: z.string().min(1).max(120),
-  cep: z.string().min(8).max(10),
-  logradouro: z.string().min(1).max(200),
-  numero: z.string().min(1).max(20),
-  complemento: z.string().max(120).optional().nullable(),
-  bairro: z.string().min(1).max(120),
-  cidade: z.string().min(1).max(120),
-  uf: z.string().length(2),
-});
 
 const ItemSchema = z.object({
   slug: z.string().min(1).max(80),
@@ -22,7 +10,6 @@ const ItemSchema = z.object({
 });
 
 const CreateOrderSchema = z.object({
-  endereco: EnderecoSchema,
   items: z.array(ItemSchema).min(1).max(50),
 });
 
@@ -36,7 +23,7 @@ export const createOrder = createServerFn({ method: "POST" })
     const slugs = data.items.map((i) => i.slug);
     const { data: products, error: pErr } = await supabase
       .from("products")
-      .select("id, slug, nome, preco_centavos")
+      .select("id, slug, nome, preco_centavos, categoria")
       .in("slug", slugs)
       .eq("ativo", true);
     if (pErr) throw new Error(pErr.message);
@@ -47,6 +34,7 @@ export const createOrder = createServerFn({ method: "POST" })
     const itemsInsert = data.items.map((it) => {
       const p = bySlug.get(it.slug);
       if (!p) throw new Error(`Produto não encontrado: ${it.slug}`);
+      if (p.categoria !== "E-book") throw new Error("Este produto não está mais disponível");
       subtotal += p.preco_centavos * it.quantidade;
       return {
         product_id: p.id,
@@ -58,8 +46,8 @@ export const createOrder = createServerFn({ method: "POST" })
       };
     });
 
-    const frete = getFreteCentavos(data.endereco.uf);
-    const total = subtotal + frete;
+    const frete = 0;
+    const total = subtotal;
 
     const { data: order, error: oErr } = await supabase
       .from("orders")
@@ -69,7 +57,7 @@ export const createOrder = createServerFn({ method: "POST" })
         subtotal_centavos: subtotal,
         frete_centavos: frete,
         total_centavos: total,
-        endereco: data.endereco,
+        endereco: { tipo: "digital" },
       })
       .select("id")
       .single();

@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { EBOOK_SLUGS } from "@/lib/catalog";
 
 export type CartItem = {
   slug: string;
@@ -33,7 +34,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     try {
       const raw = localStorage.getItem(KEY);
-      if (raw) setItems(JSON.parse(raw));
+      if (raw) {
+        const saved = JSON.parse(raw) as CartItem[];
+        setItems(saved.filter((item) => EBOOK_SLUGS.has(item.slug)));
+      }
     } catch {}
     setHydrated(true);
   }, []);
