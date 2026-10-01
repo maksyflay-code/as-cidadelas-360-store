@@ -12,7 +12,7 @@ export const Route = createFileRoute("/livro")({
       {
         name: "description",
         content:
-          "O livro 'As Cidadelas da Esperança' de Marcelo Trindade. Uma reflexão sobre cristãos como administradores do bem divino. Disponível impresso e em e-book.",
+          "O e-book 'As Cidadelas da Esperança' de Marcelo Trindade. Uma reflexão sobre cristãos como administradores do bem divino.",
       },
       { property: "og:title", content: "As Cidadelas da Esperança 360º — Marcelo Trindade" },
       { property: "og:description", content: "Conheça a obra e escolha o e-book em português, inglês ou italiano." },
