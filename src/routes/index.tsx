@@ -4,10 +4,8 @@ import { ArrowRight, Sparkles, Heart, BookOpen } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ProductCard } from "@/components/ProductCard";
+import { EBOOKS } from "@/lib/catalog";
 import heroImg from "@/assets/hero-sagrado.jpg";
-import camisa from "@/assets/produto-camisa-europa.jpg";
-import bone from "@/assets/produto-bone.jpg";
-import chaveiro from "@/assets/produto-chaveiro.jpg";
 import livroCapa from "@/assets/livro-capa.png";
 
 export const Route = createFileRoute("/")({
@@ -18,18 +16,15 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Loja oficial As Cidadelas 360º. Camisas, bonés, chaveiros e o livro 'As Cidadelas da Esperança' de Marcelo Trindade. Vamos evangelizar.",
+          "Loja oficial dos e-books As Cidadelas da Esperança 360º e Plano de Negócios em português, inglês e italiano.",
       },
+      { property: "og:title", content: "As Cidadelas 360º — E-books" },
+      { property: "og:description", content: "E-books para transformar fé e esperança em ação." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
 });
-
-const PRODUCTS = [
-  { slug: "camisa-europa", image: camisa, name: "Camisa Sagrado Coração", category: "Vestuário", price: "R$ 129", badge: "Novo" },
-  { slug: "livro-impresso", image: livroCapa, name: "As Cidadelas da Esperança", category: "Livro · Impresso", price: "R$ 59", badge: "Best-seller" },
-  { slug: "bone-cruz-dourada", image: bone, name: "Boné Cruz Dourada", category: "Acessórios", price: "R$ 89" },
-  { slug: "chaveiro-reliquia", image: chaveiro, name: "Chaveiro Relíquia", category: "Devocionais", price: "R$ 39" },
-];
 
 function HomePage() {
   return (
@@ -49,14 +44,14 @@ function HomePage() {
             </div>
 
             <h1 className="mt-8 text-display text-5xl font-medium leading-[1.05] text-foreground md:text-7xl lg:text-[5.5rem]">
-              Fé feita
-              <span className="block italic text-primary">arte vestida.</span>
+              Esperança que
+              <span className="block italic text-primary">transforma.</span>
             </h1>
 
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
-              Camisas, bonés, chaveiros e o livro que inspirou um movimento
-              missionário. Cada peça é um pedaço da nossa missão: levar a luz
-              das Cidadelas da Esperança ao mundo.
+              Leia As Cidadelas da Esperança 360º e seu Plano de Negócios em
+              português, inglês ou italiano. Conhecimento digital para levar
+              esta missão ao mundo.
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-4">
@@ -78,8 +73,8 @@ function HomePage() {
 
             <div className="mt-14 grid max-w-md grid-cols-3 gap-6 border-t border-border pt-8">
               <Stat n="360º" label="Visão integral" />
-              <Stat n="+1k" label="Leitores" />
-              <Stat n="100%" label="Missionário" />
+              <Stat n="3" label="Idiomas" />
+              <Stat n="100%" label="Digital" />
             </div>
           </div>
 
@@ -111,11 +106,11 @@ function HomePage() {
         <div className="mb-14 flex flex-col items-end justify-between gap-6 md:flex-row">
           <div className="max-w-xl">
             <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-gold">
-              Coleção Inaugural
+              Biblioteca digital
             </p>
             <h2 className="mt-3 text-display text-4xl font-medium leading-tight text-foreground md:text-5xl">
-              Símbolos para vestir,<br />
-              <span className="italic text-primary">palavras para guardar.</span>
+              Uma missão para conhecer,<br />
+              <span className="italic text-primary">um plano para realizar.</span>
             </h2>
           </div>
           <Link
@@ -127,8 +122,8 @@ function HomePage() {
           </Link>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {PRODUCTS.map((p) => (
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {EBOOKS.map((p) => (
             <ProductCard key={p.name} {...p} />
           ))}
         </div>
@@ -163,12 +158,12 @@ function HomePage() {
             </p>
 
             <div className="mt-10 flex flex-wrap gap-4">
-              <button className="inline-flex items-center gap-2 rounded-full bg-gold px-7 py-4 text-sm font-semibold text-wine-deep transition-all hover:shadow-glow">
-                Comprar impresso · R$ 59
-              </button>
-              <button className="inline-flex items-center gap-2 rounded-full border border-gold/50 bg-transparent px-7 py-4 text-sm font-medium text-gold transition-all hover:bg-gold/10">
-                Versão digital · R$ 29
-              </button>
+              <Link to="/produto/$slug" params={{ slug: "ebook-cidadelas-portugues" }} className="inline-flex items-center gap-2 rounded-full bg-gold px-7 py-4 text-sm font-semibold text-wine-deep transition-all hover:shadow-glow">
+                Comprar e-book · R$ 35,00
+              </Link>
+              <Link to="/loja" className="inline-flex items-center gap-2 rounded-full border border-gold/50 bg-transparent px-7 py-4 text-sm font-medium text-gold transition-all hover:bg-gold/10">
+                Ver todos os idiomas
+              </Link>
             </div>
 
             <p className="mt-8 text-xs uppercase tracking-[0.25em] text-gold/80">
