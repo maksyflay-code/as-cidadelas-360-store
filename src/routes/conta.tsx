@@ -6,10 +6,21 @@ import { useAuth } from "@/lib/auth";
 import { useServerFn } from "@tanstack/react-start";
 import { listMyOrders } from "@/lib/orders.functions";
 import { formatBRL } from "@/lib/shipping";
+import { downloadEbook, refreshPayment } from "@/lib/payments.functions";
+import { canDownload } from "@/lib/payment-rules";
+import { Button } from "@/components/ui/button";
+import { Download, RefreshCw } from "lucide-react";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/conta")({
   component: ContaPage,
-  head: () => ({ meta: [{ title: "Minha conta — As Cidadelas 360º" }] }),
+  head: () => ({ meta: [
+    { title: "Meus e-books e pedidos — As Cidadelas 360º" },
+    { name: "description", content: "Acompanhe seus pagamentos e baixe os e-books adquiridos." },
+    { property: "og:title", content: "Meus e-books e pedidos — As Cidadelas 360º" },
+    { property: "og:description", content: "Acompanhe seus pagamentos e baixe os e-books adquiridos." },
+    { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },
+  ] }),
 });
 
 const STATUS_LABEL: Record<string, string> = {
@@ -25,7 +36,22 @@ function ContaPage() {
   const { user, loading, signOut } = useAuth();
   const navigate = useNavigate();
   const list = useServerFn(listMyOrders);
-  const [orders, setOrders] = useState<any[]>([]);
+  const [orders, setOrders] = useState<Awaited<ReturnType<typeof listMyOrders>>>([]);
+  const download = useServerFn(downloadEbook);
+  const refresh = useServerFn(refreshPayment);
+  const [busy, setBusy] = useState<string | null>(null);
+  const handleRefresh = async (id: string) => {
+    setBusy(id);
+    try { await refresh({ data: { id } }); setOrders(await list()); }
+    catch (error) { toast.error(error instanceof Error ? error.message : "Não foi possível consultar o pagamento."); }
+    finally { setBusy(null); }
+  };
+  const handleDownload = async (orderId: string, productId: string, format: "pdf" | "epub") => {
+    setBusy(orderId);
+    try { const result = await download({ data: { orderId, productId, format } }); window.location.assign(result.url); }
+    catch (error) { toast.error(error instanceof Error ? error.message : "Não foi possível baixar o e-book."); }
+    finally { setBusy(null); }
+  };
   const [fetching, setFetching] = useState(true);
 
   useEffect(() => {
@@ -48,7 +74,7 @@ function ContaPage() {
             <h1 className="text-display text-4xl font-medium text-foreground">Minha conta</h1>
             <p className="mt-2 text-sm text-muted-foreground">{user.email}</p>
           </div>
-          <button onClick={() => { signOut(); navigate({ to: "/" }); }} className="rounded-md border border-border px-4 py-2 text-sm">Sair</button>
+          <Button variant="outline" onClick={async () => { await signOut(); navigate({ to: "/" }); }}>Sair</Button>
         </div>
 
         <h2 className="mt-10 text-sm font-semibold uppercase tracking-wider text-foreground">Meus pedidos</h2>
@@ -73,6 +99,18 @@ function ContaPage() {
                       <p className="text-xs text-muted-foreground">{new Date(o.created_at).toLocaleDateString("pt-BR")}</p>
                     </div>
                   </div>
+                  <ul className="mt-4 space-y-3 border-t border-border pt-4">
+                    {o.order_items.map(item => (
+                      <li key={item.id} className="flex flex-wrap items-center justify-between gap-2 text-sm">
+                        <span>{item.nome_snapshot}</span>
+                        {canDownload(o) && item.product_id && <div className="flex gap-2">
+                          <Button variant="outline" size="sm" disabled={busy === o.id} onClick={() => item.product_id && handleDownload(o.id, item.product_id, "pdf")}><Download /> PDF</Button>
+                          <Button variant="outline" size="sm" disabled={busy === o.id} onClick={() => item.product_id && handleDownload(o.id, item.product_id, "epub")}><Download /> EPUB</Button>
+                        </div>}
+                      </li>
+                    ))}
+                  </ul>
+                  {o.payment_provider === "mercado_pago" && <Button className="mt-3" variant="ghost" size="sm" disabled={busy === o.id} onClick={() => handleRefresh(o.id)}><RefreshCw /> Atualizar pagamento</Button>}
                 </li>
               ))}
             </ul>
