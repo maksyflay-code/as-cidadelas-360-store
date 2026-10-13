@@ -8,15 +8,22 @@ import { formatBRL } from "@/lib/shipping";
 import { createOrder } from "@/lib/orders.functions";
 import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/checkout")({
   component: CheckoutPage,
-  head: () => ({ meta: [{ title: "Checkout — As Cidadelas 360º" }] }),
+  head: () => ({ meta: [
+    { title: "Pagamento — As Cidadelas 360º" },
+    { name: "description", content: "Revise seus e-books e pague pelo Mercado Pago." },
+    { property: "og:title", content: "Pagamento — As Cidadelas 360º" },
+    { property: "og:description", content: "Revise seus e-books e pague pelo Mercado Pago." },
+    { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },
+  ] }),
 });
 
 function CheckoutPage() {
   const navigate = useNavigate();
-  const { items, subtotal, clear } = useCart();
+  const { items, subtotal } = useCart();
   const { user, loading: authLoading } = useAuth();
   const createOrderFn = useServerFn(createOrder);
 
@@ -43,9 +50,7 @@ function CheckoutPage() {
           })),
         },
       });
-      clear();
-      toast.success("Pedido criado!");
-      navigate({ to: "/pedido/sucesso", search: { id: result.orderId } });
+      window.location.assign(result.checkoutUrl);
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Erro ao criar pedido");
     } finally { setSubmitting(false); }
@@ -78,8 +83,8 @@ function CheckoutPage() {
           <div className="mb-6 border-l-2 border-gold pl-5">
             <h2 className="text-display text-2xl font-medium text-foreground">Entrega digital</h2>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              Não é necessário informar endereço ou CEP. Após a confirmação do pagamento,
-              o acesso será enviado para {user.email}.
+              Não é necessário informar endereço ou CEP. Os e-books adquiridos ficam disponíveis
+              em Minha conta após a aprovação do pagamento.
             </p>
           </div>
 
@@ -102,12 +107,11 @@ function CheckoutPage() {
             <div className="flex justify-between text-lg font-semibold">
               <span>Total</span><span className="text-primary">{formatBRL(total)}</span>
             </div>
-            <button type="submit" disabled={submitting}
-              className="mt-4 w-full rounded-md bg-primary py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90 disabled:opacity-60">
-              {submitting ? "Criando pedido..." : "Confirmar pedido"}
-            </button>
+            <Button type="submit" disabled={submitting} size="lg" className="mt-4 w-full">
+              {submitting ? "Preparando pagamento..." : "Pagar com Mercado Pago"}
+            </Button>
             <p className="text-[11px] leading-relaxed text-muted-foreground">
-              O pagamento (cartão / PIX / boleto) será integrado em seguida via Stripe.
+              Pix e cartão, conforme as opções disponíveis no Mercado Pago.
             </p>
           </aside>
         </form>
