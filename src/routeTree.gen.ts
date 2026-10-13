@@ -21,6 +21,7 @@ import { Route as CadastroRouteImport } from './routes/cadastro'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProdutoSlugRouteImport } from './routes/produto.$slug'
 import { Route as PedidoSucessoRouteImport } from './routes/pedido.sucesso'
+import { Route as ApiPublicMercadoPagoWebhookRouteImport } from './routes/api/public/mercado-pago/webhook'
 
 const SobreRoute = SobreRouteImport.update({
   id: '/sobre',
@@ -82,6 +83,12 @@ const PedidoSucessoRoute = PedidoSucessoRouteImport.update({
   path: '/pedido/sucesso',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicMercadoPagoWebhookRoute =
+  ApiPublicMercadoPagoWebhookRouteImport.update({
+    id: '/api/public/mercado-pago/webhook',
+    path: '/api/public/mercado-pago/webhook',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -96,6 +103,7 @@ export interface FileRoutesByFullPath {
   '/sobre': typeof SobreRoute
   '/pedido/sucesso': typeof PedidoSucessoRoute
   '/produto/$slug': typeof ProdutoSlugRoute
+  '/api/public/mercado-pago/webhook': typeof ApiPublicMercadoPagoWebhookRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -110,6 +118,7 @@ export interface FileRoutesByTo {
   '/sobre': typeof SobreRoute
   '/pedido/sucesso': typeof PedidoSucessoRoute
   '/produto/$slug': typeof ProdutoSlugRoute
+  '/api/public/mercado-pago/webhook': typeof ApiPublicMercadoPagoWebhookRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -125,6 +134,7 @@ export interface FileRoutesById {
   '/sobre': typeof SobreRoute
   '/pedido/sucesso': typeof PedidoSucessoRoute
   '/produto/$slug': typeof ProdutoSlugRoute
+  '/api/public/mercado-pago/webhook': typeof ApiPublicMercadoPagoWebhookRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -141,6 +151,7 @@ export interface FileRouteTypes {
     | '/sobre'
     | '/pedido/sucesso'
     | '/produto/$slug'
+    | '/api/public/mercado-pago/webhook'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -155,6 +166,7 @@ export interface FileRouteTypes {
     | '/sobre'
     | '/pedido/sucesso'
     | '/produto/$slug'
+    | '/api/public/mercado-pago/webhook'
   id:
     | '__root__'
     | '/'
@@ -169,6 +181,7 @@ export interface FileRouteTypes {
     | '/sobre'
     | '/pedido/sucesso'
     | '/produto/$slug'
+    | '/api/public/mercado-pago/webhook'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -184,6 +197,7 @@ export interface RootRouteChildren {
   SobreRoute: typeof SobreRoute
   PedidoSucessoRoute: typeof PedidoSucessoRoute
   ProdutoSlugRoute: typeof ProdutoSlugRoute
+  ApiPublicMercadoPagoWebhookRoute: typeof ApiPublicMercadoPagoWebhookRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -272,6 +286,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PedidoSucessoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/mercado-pago/webhook': {
+      id: '/api/public/mercado-pago/webhook'
+      path: '/api/public/mercado-pago/webhook'
+      fullPath: '/api/public/mercado-pago/webhook'
+      preLoaderRoute: typeof ApiPublicMercadoPagoWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -288,6 +309,7 @@ const rootRouteChildren: RootRouteChildren = {
   SobreRoute: SobreRoute,
   PedidoSucessoRoute: PedidoSucessoRoute,
   ProdutoSlugRoute: ProdutoSlugRoute,
+  ApiPublicMercadoPagoWebhookRoute: ApiPublicMercadoPagoWebhookRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
