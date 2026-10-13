@@ -116,6 +116,9 @@ export type Database = {
           endereco: Json
           frete_centavos: number
           id: string
+          payment_id: string | null
+          payment_preference_id: string | null
+          payment_provider: string | null
           status: Database["public"]["Enums"]["order_status"]
           stripe_session_id: string | null
           subtotal_centavos: number
@@ -128,6 +131,9 @@ export type Database = {
           endereco: Json
           frete_centavos: number
           id?: string
+          payment_id?: string | null
+          payment_preference_id?: string | null
+          payment_provider?: string | null
           status?: Database["public"]["Enums"]["order_status"]
           stripe_session_id?: string | null
           subtotal_centavos: number
@@ -140,6 +146,9 @@ export type Database = {
           endereco?: Json
           frete_centavos?: number
           id?: string
+          payment_id?: string | null
+          payment_preference_id?: string | null
+          payment_provider?: string | null
           status?: Database["public"]["Enums"]["order_status"]
           stripe_session_id?: string | null
           subtotal_centavos?: number
