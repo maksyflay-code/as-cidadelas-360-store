@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { canDownload, paymentMatchesOrder, PurchaseSchema } from "./payment-rules";
+import { canDownload, paymentMatchesOrder, PurchaseSchema } from "../src/lib/payment-rules";
 const order = { id: "c93cef6c-d87a-4c88-b0f8-8b8dde4992d1", total_centavos: 3500 };
 const payment = { id: 123, external_reference: order.id, transaction_amount: 35, currency_id: "BRL", status: "approved" };
 describe("entrega digital", () => {
