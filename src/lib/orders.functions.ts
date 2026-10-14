@@ -4,17 +4,6 @@ import { z } from "zod";
 import { EBOOK_SLUGS } from "./catalog";
 import { PurchaseSchema } from "./payment-rules";
 
-const ItemSchema = z.object({
-  slug: z.string().min(1).max(80),
-  tamanho: z.string().max(20).optional().nullable(),
-  variante: z.string().max(40).optional().nullable(),
-  quantidade: z.number().int().min(1).max(50),
-});
-
-const CreateOrderSchema = z.object({
-  items: z.array(ItemSchema).min(1).max(50),
-});
-
 export const createOrder = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((input: unknown) => PurchaseSchema.parse(input))

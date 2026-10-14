@@ -36,7 +36,11 @@ function ContaPage() {
   const { user, loading, signOut } = useAuth();
   const navigate = useNavigate();
   const list = useServerFn(listMyOrders);
-  const [orders, setOrders] = useState<Awaited<ReturnType<typeof listMyOrders>>>([]);
+  const [orders, setOrders] = useState<Array<{
+    id: string; status: string; payment_provider: string | null; payment_id: string | null;
+    total_centavos: number; created_at: string;
+    order_items: Array<{ id: string; product_id: string | null; nome_snapshot: string }>;
+  }>>([]);
   const download = useServerFn(downloadEbook);
   const refresh = useServerFn(refreshPayment);
   const [busy, setBusy] = useState<string | null>(null);

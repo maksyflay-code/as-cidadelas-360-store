@@ -44,7 +44,7 @@ function SucessoPage() {
     void check();
     const timer = setInterval(check, 10000);
     return () => { active = false; clearInterval(timer); };
-  }, [user, id, refresh, getOrder]);
+  }, [user, id, refresh, getOrder, clear]);
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />
