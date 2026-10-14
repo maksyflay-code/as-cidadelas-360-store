@@ -46,9 +46,9 @@ function SucessoPage() {
     return () => { active = false; clearInterval(timer); };
   }, [user, id, refresh, getOrder, clear]);
   return (
-    <div className="min-h-screen bg-background">
+    <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
-      <section className="mx-auto max-w-xl px-6 py-20 text-center">
+      <section className="mx-auto w-full max-w-xl flex-1 px-6 py-20 text-center">
         {status === "paid" && <CheckCircle2 className="mx-auto h-16 w-16 text-primary" />}
         <h1 className="mt-6 text-display text-4xl font-medium text-foreground">{status === "paid" ? "Pagamento aprovado!" : status === "failed" || status === "canceled" ? "Pagamento não concluído" : "Confirmação do pagamento"}</h1>
         <p className="mt-3 text-sm text-muted-foreground">

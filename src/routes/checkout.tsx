@@ -74,9 +74,9 @@ function CheckoutPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
-      <section className="mx-auto max-w-5xl px-6 py-12">
+      <section className="mx-auto w-full max-w-5xl flex-1 px-6 py-12">
         <h1 className="text-display text-4xl font-medium text-foreground">Checkout</h1>
 
         <form onSubmit={handleSubmit} className="mx-auto mt-8 max-w-xl">
