@@ -109,7 +109,6 @@ function ContaPage() {
                         <span>{item.nome_snapshot}</span>
                         {canDownload(o) && item.product_id && <div className="flex gap-2">
                           <Button variant="outline" size="sm" disabled={busy === o.id} onClick={() => item.product_id && handleDownload(o.id, item.product_id, "pdf")}><Download /> PDF</Button>
-                          <Button variant="outline" size="sm" disabled={busy === o.id} onClick={() => item.product_id && handleDownload(o.id, item.product_id, "epub")}><Download /> EPUB</Button>
                         </div>}
                       </li>
                     ))}
